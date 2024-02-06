@@ -1,0 +1,20 @@
+{
+  "canisters": {
+    "backend": {
+      "type": "custom",
+      "main": "backend/index.ts",
+      "candid": "backend/index.did",
+      "build": "npx azle backend",
+      "wasm": ".azle/backend/backend.wasm",
+      "gzip": true
+    }
+  },
+  "frontend": {
+    "dependencies": ["backend"],
+    "frontend": {
+      "entrypoint": "frontend/build/index.html"
+    },
+    "source": ["frontend/build"],
+    "type": "assets"
+  }
+}

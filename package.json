@@ -1,0 +1,26 @@
+{
+  "name": "azle-api-rest-nextjs",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "keywords": [
+    "api rest",
+    "azle",
+    "express",
+    "icp",
+    "internet computer",
+    "nextjs",
+    "react",
+    "rest",
+    "typescript"
+  ],
+  "scripts": {
+    "build": "turbo run build"
+  },
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "4.3.0",
+    "prettier": "^3.1.1",
+    "turbo": "^1.11.2"
+  }
+}

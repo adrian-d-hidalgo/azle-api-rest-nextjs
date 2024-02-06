@@ -1,0 +1,15 @@
+{
+  "bracketSpacing": true,
+  "bracketSameLine": true,
+  "singleQuote": false,
+  "jsxSingleQuote": false,
+  "trailingComma": "es5",
+  "semi": true,
+  "printWidth": 110,
+  "arrowParens": "always",
+  "endOfLine": "auto",
+  "importOrder": ["<THIRD_PARTY_MODULES>", "^@bundly/*", "^ic-*", "^@app/*", "^[./]"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "plugins": ["@trivago/prettier-plugin-sort-imports"]
+}
