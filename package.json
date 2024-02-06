@@ -16,7 +16,9 @@
     "typescript"
   ],
   "scripts": {
-    "build": "turbo run build"
+    "build": "turbo run build",
+    "preclean": "turbo run clean",
+    "clean": "rm -rf .azle && rm -rf .dfx && rm -rf .turbo && rm -rf node_modules"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "4.3.0",

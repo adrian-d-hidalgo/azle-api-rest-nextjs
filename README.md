@@ -1,56 +1,75 @@
-# Azle Hello World
+# Fullstack dApp (Azle + Express + NextJS + ICP)
 
-Azle helps you to build secure decentralized/replicated servers in TypeScript or JavaScript. The current replication factor is [13-40 times](https://dashboard.internetcomputer.org/subnets).
+This template is designed to easily build applications deployed on ICP using Azle + Express for RESTful APIs and Next.js for frontend development.
 
-For more documentation please see [The Azle Book](https://demergent-labs.github.io/azle/).
+## Preparation
 
-## Installation
-
-Run the following commands individually following the instructions in the comments:
+### Ubuntu dependencies
 
 ```bash
-npx azle new hello_world
-cd hello_world
-
-# Ubuntu build dependencies
+sudo apt update
 sudo apt install clang
 sudo apt install build-essential
 sudo apt install libssl-dev
 sudo apt install pkg-config
-
-# Mac build dependencies
-xcode-select --install
-brew install llvm
-
-# The dfx command line tools for managing ICP applications
-DFX_VERSION=0.16.1 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
-dfx start --clean --host 127.0.0.1:8000
-
-# In a separate terminal in the hello_world directory
-npm install
-dfx deploy
-
-# If you have problems deploying see https://demergent-labs.github.io/azle/deployment.html#common-deployment-issues
-
-# Obtain your application's [canisterId]
-dfx canister id backend
-
-# View your frontend in a web browser at http://[canisterId].localhost:8000
-
-# Communicate with your canister using any HTTP client library
-curl http://[canisterId].localhost:8000/db
-curl -X POST -H "Content-Type: application/json" -d "{ \"hello\": \"world\" }" http://[canisterId].localhost:8000/db/update
 ```
 
-## Examples
+### MacOs dependencies
 
-There are many Azle examples in the [examples directory](bkyz2-fmaaa-aaaaa-qaaaq-cai). We recommend starting with the following:
+```bash
+xcode-select --install
+brew install llvm
+```
 
--   [apollo_server](https://github.com/demergent-labs/azle/tree/main/examples/apollo_server)
--   [ethers](https://github.com/demergent-labs/azle/tree/main/examples/ethers)
--   [express](https://github.com/demergent-labs/azle/tree/main/examples/express)
--   [fs](https://github.com/demergent-labs/azle/tree/main/examples/fs)
--   [hello_world](https://github.com/demergent-labs/azle/tree/main/examples/hello_world)
--   [ic_evm_rpc](https://github.com/demergent-labs/azle/tree/main/examples/ic_evm_rpc)
--   [sqlite](https://github.com/demergent-labs/azle/tree/main/examples/sqlite)
--   [web_assembly](https://github.com/demergent-labs/azle/tree/main/examples/web_assembly)
+## DFX instalation
+
+```bash
+# The dfx command line tools for managing ICP applications
+DFX_VERSION=0.16.1 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+```
+
+## Instal Node packages
+
+```bash
+npm install
+```
+
+## Setup frontend environment variables
+
+Create .env file:
+
+```bash
+# Create .env file
+cp frontend/.env-example frontend/.env
+```
+
+Your .env file should look something like this:
+
+```bash
+# Substitute "localhost:4943" with your host address if necessary.
+NEXT_PUBLIC_IC_HOST=localhost:4943
+# Obtain your canisterId with `dfx canister id backend` and replace it
+NEXT_PUBLIC_BACKEND_CANISTER_ID={canisterId}
+```
+
+## How to use
+
+```bash
+# Start ICP Local Replica
+dfx start --background --clean
+
+# Deploy canisters
+dfx deploy
+```
+
+You will receive a result similar to the following:
+
+```bash
+URLs:
+  Frontend canister via browser
+    frontend: http://127.0.0.1:4943/?canisterId=be2us-64aaa-aaaaa-qaabq-cai
+  Backend canister via Candid interface:
+    backend: http://127.0.0.1:4943/?canisterId=bd3sg-teaaa-aaaaa-qaaba-cai&id=bkyz2-fmaaa-aaaaa-qaaaq-cai
+```
+
+Open your web browser and enter the Frontend URL to view the web application in action.

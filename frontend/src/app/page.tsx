@@ -12,11 +12,11 @@ export default function Home() {
 
   async function connectToApi() {
     try {
-      // TODO: Get this from .env, you can run `dfx canister id backend` to get your id
-      const canisterId = "bkyz2-fmaaa-aaaaa-qaaaq-cai";
+      const icHost = process.env.NEXT_PUBLIC_IC_HOST
+      const backendCanisterId = process.env.NEXT_PUBLIC_BACKEND_CANISTER_ID;
 
       const http = axios.create({
-        baseURL: `http://${canisterId}.localhost:4943`,
+        baseURL: `http://${backendCanisterId}.${icHost}`,
         headers: {
           "Content-Type": "application/json",
         }
