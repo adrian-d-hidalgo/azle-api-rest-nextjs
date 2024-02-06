@@ -7,14 +7,14 @@
       "build": "npx azle backend",
       "wasm": ".azle/backend/backend.wasm",
       "gzip": true
-    }
-  },
-  "frontend": {
-    "dependencies": ["backend"],
-    "frontend": {
-      "entrypoint": "frontend/build/index.html"
     },
-    "source": ["frontend/build"],
-    "type": "assets"
+    "frontend": {
+      "dependencies": ["backend"],
+      "frontend": {
+        "entrypoint": "frontend/build/index.html"
+      },
+      "source": ["frontend/build"],
+      "type": "assets"
+    }
   }
 }

@@ -1,6 +1,6 @@
 import { Server } from 'azle';
 import express from 'express';
-import * as cors from "cors";
+import cors from "cors";
 
 export default Server(() => {
     const app = express();
