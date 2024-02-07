@@ -1,16 +1,7 @@
 import { Server } from 'azle';
-import express from 'express';
-import cors from "cors";
+
+import { app } from './src/app';
 
 export default Server(() => {
-    const app = express();
-    app.use(cors());
-
-    app.use(express.json());
-
-    app.get('/', (req, res) => {
-        res.send("Hello, World!");
-    });
-
     return app.listen();
 });

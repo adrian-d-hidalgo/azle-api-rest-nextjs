@@ -36,11 +36,17 @@ npm install
 
 ## Setup frontend environment variables
 
-Create .env file:
+Create set .env file:
 
 ```bash
 # Create .env file
 cp frontend/.env-example frontend/.env
+
+# Create canisters
+dfx canister create --all
+
+# Get backend canister id
+dfx canister id backend
 ```
 
 Your .env file should look something like this:
@@ -48,7 +54,7 @@ Your .env file should look something like this:
 ```bash
 # Substitute "localhost:4943" with your host address if necessary.
 NEXT_PUBLIC_IC_HOST=localhost:4943
-# Obtain your canisterId with `dfx canister id backend` and replace it
+# Replace {canisterId} with your id
 NEXT_PUBLIC_BACKEND_CANISTER_ID={canisterId}
 ```
 
