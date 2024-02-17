@@ -6,7 +6,11 @@
       "candid": "backend/index.did",
       "build": "npx azle backend",
       "wasm": ".azle/backend/backend.wasm",
-      "gzip": true
+      "gzip": true,
+      "declarations": {
+        "node_compatibility": true,
+        "output": "frontend/src/declarations/backend"
+      }
     },
     "frontend": {
       "dependencies": ["backend"],
