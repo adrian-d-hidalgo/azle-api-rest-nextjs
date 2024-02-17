@@ -1,16 +1,11 @@
 import { Actors } from "@app/canisters";
-import { useEffect } from "react";
 
-import { useActor } from "@bundly/ic-react";
+import { AuthButton, useActor } from "@bundly/ic-react";
 import { HttpClient } from "@app/utils/http-client";
 
 export default function HomePage() {
     const backend = useActor<Actors>("backend");
     const httpClient = new HttpClient(backend);
-
-    useEffect(() => {
-        testFunction();
-    }, []);
 
     async function testFunction() {
         try {
@@ -26,9 +21,25 @@ export default function HomePage() {
         }
     }
 
+    async function whoAmI() {
+        try {
+            const response = await httpClient.get("/whoami");
+
+            console.log(response.body);
+        } catch (error) {
+            console.error({ error });
+        }
+    }
+
     return (
         <div>
             <h1>Home Page</h1>
+            <AuthButton />
+            <div>
+                <button onClick={() => whoAmI()}>Who Am I</button>
+                <button onClick={() => testFunction()}>Test</button>
+            </div>
+
         </div>
     );
 }

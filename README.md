@@ -56,6 +56,7 @@ Your .env file should look something like this:
 NEXT_PUBLIC_IC_HOST=localhost:4943
 # Replace {canisterId} with your id
 NEXT_PUBLIC_BACKEND_CANISTER_ID={canisterId}
+NEXT_PUBLIC_INTERNET_IDENTITY_URL={your_internet_identity_url}
 ```
 
 ## How to use
