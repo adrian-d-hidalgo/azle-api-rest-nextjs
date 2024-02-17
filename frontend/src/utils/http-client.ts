@@ -8,9 +8,9 @@ export class HttpClient {
     constructor(private actor: ActorSubclass<ACTOR_SERVICE>) { }
 
     public async query(url: string, config?: QueryConfig): Promise<HttpResponse> {
-        // TODO: concatenate params to url
+        const queryParams = config?.params ? `?${new URLSearchParams(config.params).toString()}` : "";
         const result = await this.actor.http_request({
-            url,
+            url: `${url}${queryParams}`,
             method: "GET",
             body: [],
             headers: config?.headers ? parseHeadersRequest(config.headers) : [],
@@ -35,15 +35,12 @@ export class HttpClient {
     }
 
     public async update(url: string, method: string, data?: any, config?: UpdateConfig): Promise<HttpResponse> {
-        console.log(config?.headers && parseHeadersRequest(config.headers));
-
-        // TODO: concatenate params to url
+        const queryParams = config?.params ? `?${new URLSearchParams(config.params).toString()}` : "";
         const result = await this.actor.http_request_update({
-            url,
+            url: `${url}${queryParams}`,
             method,
             body: data ? parseBodyRequest(data) : [],
             headers: config?.headers ? parseHeadersRequest(config.headers) : [],
-            // headers: [],
             certificate_version: []
         });
 

@@ -9,13 +9,12 @@ app.use(cors());
 app.use(express.json());
 
 app.post('/test', (req, res) => {
-    res.statusCode = 200;
     res.send(req.body);
 });
 
 app.get('/health', (req, res) => {
-    res.statusCode = 200;
-    res.send([1, "2", "3"]);
+    res.statusCode = 204;
+    res.send("OK");
 });
 
 app.use(AppRouter);

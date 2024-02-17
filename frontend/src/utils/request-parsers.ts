@@ -18,12 +18,12 @@ export function parseHeadersRequest(headers: Record<string, string>): [string, s
  * @returns {Uint8Array | null} - The converted data as a Uint8Array or null if the data cannot be converted.
  */
 export function parseBodyRequest(data: string | number[] | Record<string, unknown> | null): Uint8Array | null {
+    const encoder = new TextEncoder();
+
     if (typeof data === 'string') {
         // Attempt to convert string to object and then to JSON string
         try {
-            const jsonData = JSON.stringify(JSON.parse(data));
-            const encoder = new TextEncoder();
-            return encoder.encode(jsonData);
+            return encoder.encode(data);
         } catch (error) {
             // If conversion to object and then to JSON string fails, return original string as Uint8Array
             const encoder = new TextEncoder();
@@ -31,22 +31,10 @@ export function parseBodyRequest(data: string | number[] | Record<string, unknow
         }
     }
 
-    if (Array.isArray(data)) {
+    if (Array.isArray(data) || (typeof data === 'object' && data !== null)) {
         // Convert array to JSON string and then to Uint8Array
         try {
             const jsonData = JSON.stringify(data);
-            const encoder = new TextEncoder();
-            return encoder.encode(jsonData);
-        } catch (error) {
-            return null; // If conversion to JSON string fails, return null
-        }
-    }
-
-    if (typeof data === 'object' && data !== null) {
-        // Convert object to JSON string and then to Uint8Array
-        try {
-            const jsonData = JSON.stringify(data);
-            const encoder = new TextEncoder();
             return encoder.encode(jsonData);
         } catch (error) {
             return null; // If conversion to JSON string fails, return null

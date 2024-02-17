@@ -14,7 +14,7 @@ export default function HomePage() {
 
     async function testFunction() {
         try {
-            const response = await httpClient.post("/test", "hello", {
+            const response = await httpClient.post("/test", { hello: "hello" }, {
                 headers: {
                     "Content-Type": "application/json"
                 }
