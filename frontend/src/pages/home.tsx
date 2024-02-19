@@ -1,15 +1,21 @@
 import { Actors } from "@app/canisters";
 
-import { AuthButton, useActor } from "@bundly/ic-react";
-import { HttpClient } from "@app/utils/http-client";
+import { AuthButton, useActor, useAuth } from "@bundly/ic-react";
+import { HttpClient } from "@bundly/ic-http-client";
+import { useEffect } from "react";
 
 export default function HomePage() {
+    const { isAuthenticated } = useAuth();
     const backend = useActor<Actors>("backend");
-    const httpClient = new HttpClient(backend);
+    let httpClient = new HttpClient(backend as any);
+
+    useEffect(() => {
+        httpClient = new HttpClient(backend as any);
+    }, [isAuthenticated]);
 
     async function testFunction() {
         try {
-            const response = await httpClient.post("/test", { hello: "hello" }, {
+            const response = await httpClient.post("/test", { hello: "world" }, {
                 headers: {
                     "Content-Type": "application/json"
                 }
