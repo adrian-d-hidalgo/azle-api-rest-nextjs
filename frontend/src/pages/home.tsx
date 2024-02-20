@@ -1,15 +1,10 @@
 import { RestActors } from "@app/canisters";
 
 import { AuthButton, useAuth, useRestActor } from "@bundly/ic-react";
-import { useEffect } from "react";
 
 export default function HomePage() {
     const { isAuthenticated } = useAuth();
     const backend = useRestActor<RestActors>("backend");
-
-    useEffect(() => {
-        console.log({ isAuthenticated });
-    }, [isAuthenticated]);
 
     async function testFunction() {
         try {
@@ -19,7 +14,6 @@ export default function HomePage() {
                 }
             });
 
-            console.log({ response });
         } catch (error) {
             console.error({ error });
         }
