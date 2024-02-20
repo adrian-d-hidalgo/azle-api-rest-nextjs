@@ -1,9 +1,9 @@
 import { BackendActor, backend } from "./backend";
 
-export type Actors = {
+export type RestActors = {
     backend: BackendActor;
 };
 
-export const canisters = {
+export const restCanisters = {
     backend,
 };

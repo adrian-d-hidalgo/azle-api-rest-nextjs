@@ -1,21 +1,19 @@
-import { Actors } from "@app/canisters";
+import { RestActors } from "@app/canisters";
 
-import { AuthButton, useActor, useAuth } from "@bundly/ic-react";
-import { HttpClient } from "@bundly/ic-http-client";
+import { AuthButton, useAuth, useRestActor } from "@bundly/ic-react";
 import { useEffect } from "react";
 
 export default function HomePage() {
     const { isAuthenticated } = useAuth();
-    const backend = useActor<Actors>("backend");
-    let httpClient = new HttpClient(backend as any);
+    const backend = useRestActor<RestActors>("backend");
 
     useEffect(() => {
-        httpClient = new HttpClient(backend as any);
+        console.log({ isAuthenticated });
     }, [isAuthenticated]);
 
     async function testFunction() {
         try {
-            const response = await httpClient.post("/test", { hello: "world" }, {
+            const response = await backend.post("/test", { hello: "world" }, {
                 headers: {
                     "Content-Type": "application/json"
                 }
@@ -29,7 +27,7 @@ export default function HomePage() {
 
     async function whoAmI() {
         try {
-            const response = await httpClient.get("/whoami");
+            const response = await backend.get("/whoami");
 
             console.log(response.body);
         } catch (error) {
