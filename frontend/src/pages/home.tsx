@@ -1,10 +1,7 @@
-import { RestActors } from "@app/canisters";
-
-import { AuthButton, useAuth, useRestActor } from "@bundly/ic-react";
+import { AuthButton, useRestActor } from "@bundly/ic-react";
 
 export default function HomePage() {
-    const { isAuthenticated } = useAuth();
-    const backend = useRestActor<RestActors>("backend");
+    const backend = useRestActor("backend");
 
     async function testFunction() {
         try {
@@ -14,6 +11,7 @@ export default function HomePage() {
                 }
             });
 
+            console.log({ response });
         } catch (error) {
             console.error({ error });
         }
@@ -37,7 +35,6 @@ export default function HomePage() {
                 <button onClick={() => whoAmI()}>Who Am I</button>
                 <button onClick={() => testFunction()}>Test</button>
             </div>
-
         </div>
     );
 }

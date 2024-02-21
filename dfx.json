@@ -8,10 +8,16 @@
       "build": "npx azle backend",
       "wasm": ".azle/backend/backend.wasm",
       "gzip": true,
-      "declarations": {
-        "node_compatibility": true,
-        "output": "frontend/src/declarations/backend"
-      }
+      "metadata": [
+        {
+          "name": "candid:service",
+          "path": "backend/index.did"
+        },
+        {
+          "name": "cdk:name",
+          "content": "azle"
+        }
+      ]
     },
     "frontend": {
       "dependencies": ["backend"],
