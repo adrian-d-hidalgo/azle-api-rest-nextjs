@@ -4,8 +4,8 @@ import { Client, InternetIdentity } from '@bundly/ic-core-js';
 import { IcpConnectContextProvider } from '@bundly/ic-react';
 
 const restCanisters = {
-    backend: {
-        baseUrl: process.env.NEXT_PUBLIC_BACKEND_URL!
+    api: {
+        baseUrl: process.env.NEXT_PUBLIC_API_REST_URL!
     }
 }
 
