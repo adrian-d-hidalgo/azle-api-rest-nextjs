@@ -21,7 +21,7 @@ export default function HomePage() {
         try {
             const response = await backend.get("/whoami");
 
-            console.log(response.data);
+            console.log(response);
         } catch (error) {
             console.error({ error });
         }
