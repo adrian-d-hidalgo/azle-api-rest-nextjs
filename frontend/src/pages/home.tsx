@@ -1,7 +1,7 @@
 import { AuthButton, useRestActor } from "@bundly/ic-react";
 
 export default function HomePage() {
-    const backend = useRestActor("api");
+    const backend = useRestActor("backend");
 
     async function testFunction() {
         try {

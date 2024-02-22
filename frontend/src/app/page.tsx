@@ -1,30 +1,52 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import axios from 'axios';
+import ares from "@bundly/ares";
+
+import { useEffect } from "react";
 
 export default function Home() {
-  const [greet, setGreet] = useState<string>("");
-
   useEffect(() => {
     connectToApi();
   }, []);
 
   async function connectToApi() {
     try {
-      const icHost = process.env.NEXT_PUBLIC_IC_HOST
-      const backendCanisterId = process.env.NEXT_PUBLIC_BACKEND_CANISTER_ID;
+      type TestResponse = {
+        message: string;
+      }
 
-      const http = axios.create({
-        baseURL: `http://${backendCanisterId}.${icHost}`,
+      // const response = await ares<TestResponse>({
+      //   url: `${process.env.NEXT_PUBLIC_API_REST_URL}/test`,
+      //   method: "POST",
+      //   data: {
+      //     message: "Hello, World!"
+      //   },
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   }
+      // });
+
+      // const response = await ares.post<TestResponse>(`${process.env.NEXT_PUBLIC_API_REST_URL}/test`, {
+      //   message: "Hello, World!"
+      // }, {
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   }
+      // });
+
+      const instance = ares.create({
+        baseURL: `${process.env.NEXT_PUBLIC_API_REST_URL}`
+      });
+
+      const response = await instance.post<TestResponse>("/test", {
+        message: "Hello, World!"
+      }, {
         headers: {
           "Content-Type": "application/json",
         }
       });
 
-      const response = await http.get<string>("/");
-
-      setGreet(response.data);
+      console.log({ response });
     } catch (error) {
       console.log({ error });
     }
@@ -33,7 +55,6 @@ export default function Home() {
   return (
     <main>
       <h1>Home</h1>
-      <p>{greet}</p>
     </main>
   );
 }
