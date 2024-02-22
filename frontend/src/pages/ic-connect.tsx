@@ -1,6 +1,6 @@
 import { AuthButton, useRestActor } from "@bundly/ic-react";
 
-export default function HomePage() {
+export default function IcConnectPage() {
     const backend = useRestActor("backend");
 
     async function testFunction() {
@@ -29,7 +29,7 @@ export default function HomePage() {
 
     return (
         <div>
-            <h1>Home Page</h1>
+            <h1>IC Connect</h1>
             <AuthButton />
             <div>
                 <button onClick={() => whoAmI()}>Who Am I</button>
