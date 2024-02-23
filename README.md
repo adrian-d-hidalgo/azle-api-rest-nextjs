@@ -2,74 +2,64 @@
 
 This template is designed to easily build applications deployed on ICP using Azle + Express for RESTful APIs and Next.js for frontend development.
 
-## Preparation
+## Run Locally
 
-### Ubuntu dependencies
-
-```bash
-sudo apt update
-sudo apt install clang
-sudo apt install build-essential
-sudo apt install libssl-dev
-sudo apt install pkg-config
-```
-
-### MacOs dependencies
+Clone the project
 
 ```bash
-xcode-select --install
-brew install llvm
+  git clone https://github.com/adrian-d-hidalgo/azle-api-rest-nextjs
 ```
 
-## DFX instalation
+Go to the project directory
 
 ```bash
-# The dfx command line tools for managing ICP applications
-DFX_VERSION=0.16.1 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+  cd azle-api-rest-nextjs
 ```
 
-## Instal Node packages
+Install dependencies
 
 ```bash
 npm install
 ```
 
-## Setup frontend environment variables
-
-Create set .env file:
+Create a .env file:
 
 ```bash
 # Create .env file
 cp frontend/.env-example frontend/.env
+```
 
+Get your canister ids:
+
+```bash
 # Create canisters
 dfx canister create --all
 
 # Get backend canister id
 dfx canister id backend
+
+# Get internet-identity canister id
+dfx canister id internet-identity
 ```
 
 Your .env file should look something like this:
 
 ```bash
-# Substitute "localhost:4943" with your host address if necessary.
-NEXT_PUBLIC_IC_HOST=localhost:4943
-# Replace {canisterId} with your id
-NEXT_PUBLIC_BACKEND_CANISTER_ID={canisterId}
-NEXT_PUBLIC_INTERNET_IDENTITY_URL={your_internet_identity_url}
+# Replace BACKEND_CANISTER_ID with your backend canister id
+NEXT_PUBLIC_API_REST_URL=http://BACKEND_CANISTER_ID.localshot:4943
+# Replace INTERNET_IDENTITY_CANISTER_ID with your internet-identity canister id
+NEXT_PUBLIC_INTERNET_IDENTITY_URL=http://INTERNET_IDENTITY_CANISTER_ID.localshot:4943
 ```
 
-## How to use
+Start a ICP local replica:
 
-```bash
-# Start ICP Local Replica
-dfx start --background --clean
+`dfx start --background --clean`
 
-# Deploy canisters
-dfx deploy
-```
+Deploy your canisters:
 
-You will receive a result similar to the following:
+`dfx deploy`
+
+You will receive a result similar to the following (ids could be different four you):
 
 ```bash
 URLs:
@@ -80,3 +70,19 @@ URLs:
 ```
 
 Open your web browser and enter the Frontend URL to view the web application in action.
+
+## Test frontend without deploy to ICP Replica
+
+Comment the next line into `frontend/next.config.mjs` file:
+
+```javascript
+// output: "export",
+```
+
+Then, navitate to `frontend` folder:
+
+`cd frontend`
+
+Run the following script:
+
+`npm run dev`
