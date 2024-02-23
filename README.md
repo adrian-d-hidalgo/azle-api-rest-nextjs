@@ -29,6 +29,10 @@ Create a .env file:
 cp frontend/.env-example frontend/.env
 ```
 
+Start a ICP local replica:
+
+`dfx start --background --clean`
+
 Get your canister ids:
 
 ```bash
@@ -50,10 +54,6 @@ NEXT_PUBLIC_API_REST_URL=http://BACKEND_CANISTER_ID.localshot:4943
 # Replace INTERNET_IDENTITY_CANISTER_ID with your internet-identity canister id
 NEXT_PUBLIC_INTERNET_IDENTITY_URL=http://INTERNET_IDENTITY_CANISTER_ID.localshot:4943
 ```
-
-Start a ICP local replica:
-
-`dfx start --background --clean`
 
 Deploy your canisters:
 
