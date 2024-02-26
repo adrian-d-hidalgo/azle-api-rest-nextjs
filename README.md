@@ -50,9 +50,9 @@ Your .env file should look something like this:
 
 ```bash
 # Replace BACKEND_CANISTER_ID with your backend canister id
-NEXT_PUBLIC_API_REST_URL=http://BACKEND_CANISTER_ID.localshot:4943
+NEXT_PUBLIC_API_REST_URL=http://BACKEND_CANISTER_ID.localhost:4943
 # Replace INTERNET_IDENTITY_CANISTER_ID with your internet-identity canister id
-NEXT_PUBLIC_INTERNET_IDENTITY_URL=http://INTERNET_IDENTITY_CANISTER_ID.localshot:4943
+NEXT_PUBLIC_INTERNET_IDENTITY_URL=http://INTERNET_IDENTITY_CANISTER_ID.localhost:4943
 ```
 
 Deploy your canisters:
