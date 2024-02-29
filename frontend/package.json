@@ -10,9 +10,9 @@
     "clean": "rm -rf .next && rm -rf .turbo && rm -rf build && rm -rf node_modules"
   },
   "dependencies": {
-    "@bundly/ares": "^0.1.1-rc.1",
-    "@bundly/ic-core-js": "^0.4.3-rc.1",
-    "@bundly/ic-react": "^0.4.3-rc.1",
+    "@bundly/ares-rest": "^0.1.0-rc.2",
+    "@bundly/ares-core": "^0.1.0-rc.0",
+    "@bundly/ares-react": "^0.1.0-rc.0",
     "@dfinity/agent": "^1.0.1",
     "axios": "^1.6.7",
     "next": "14.1.0",

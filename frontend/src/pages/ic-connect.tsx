@@ -1,4 +1,4 @@
-import { AuthButton, useRestActor } from "@bundly/ic-react";
+import { AuthButton, useRestActor } from "@bundly/ares-react";
 
 export default function IcConnectPage() {
     const backend = useRestActor("backend");

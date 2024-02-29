@@ -1,7 +1,7 @@
 import type { AppProps } from 'next/app';
 
-import { Client, InternetIdentity } from '@bundly/ic-core-js';
-import { IcpConnectContextProvider } from '@bundly/ic-react';
+import { Client, InternetIdentity } from '@bundly/ares-core';
+import { IcpConnectContextProvider } from '@bundly/ares-react';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
     const client = Client.create({

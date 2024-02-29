@@ -1,7 +1,7 @@
 "use client";
 import { useEffect } from 'react';
 
-import ares from '@bundly/ares';
+import ares from '@bundly/ares-rest';
 
 export default function AresPage() {
     useEffect(() => {
