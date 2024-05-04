@@ -1,4 +1,6 @@
 {
+  "version": 1,
+  "dfx": "0.19.0",
   "canisters": {
     "backend": {
       "type": "custom",
@@ -20,12 +22,12 @@
       ]
     },
     "frontend": {
+      "type": "assets",
       "dependencies": ["backend"],
       "frontend": {
         "entrypoint": "frontend/build/index.html"
       },
-      "source": ["frontend/build"],
-      "type": "assets"
+      "source": ["frontend/build"]
     },
     "internet-identity": {
       "type": "custom",
