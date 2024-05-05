@@ -1,7 +1,6 @@
 import { ic } from "azle";
 import cors from "cors";
 import express, { NextFunction, Request, Response } from "express";
-import { readFileSync, writeFileSync } from "fs";
 
 import { Database } from "./database";
 
@@ -37,15 +36,22 @@ async function CreateApp() {
     res.send().statusCode = 204;
   });
 
-  app.post("/contacts", async (req, res) => {
-    console.log({ body: req.body });
-    const result = await req.database.exec(`INSERT INTO contacts (name) VALUES ('${req.body.name}')`);
-    res.json(result);
+  app.post("/contacts", AuthGuard, (req, res) => {
+    const { name, email } = req.body;
+
+    const result = req.database.exec(`
+      INSERT INTO contacts (name, email) VALUES ('${name}', '${email}')
+    `);
+
+    res.json({
+      name,
+      email,
+    });
   });
 
-  app.get("/contacts", async (req, res) => {
+  app.get("/contacts", AuthGuard, (req, res) => {
     try {
-      const result = await req.database.exec(`SELECT * FROM contacts`);
+      const result = req.database.exec(`SELECT * FROM contacts`);
       res.json(result);
     } catch (error) {
       console.error(error);
@@ -54,36 +60,14 @@ async function CreateApp() {
   });
 
   // Database
-  app.get("/database/migrations", async (req, res) => {
+  app.get("/database/migrations", AuthGuard, async (req, res) => {
     const result = await req.database.exec(`SELECT * FROM migrations`);
     res.json(result);
   });
 
-  app.get("/database/tables", async (req, res) => {
+  app.get("/database/tables", AuthGuard, async (req, res) => {
     const result = await req.database.exec(`SELECT name FROM sqlite_master WHERE type='table'`);
     res.json(result);
-  });
-
-  app.post("/write-file-sync", (req: Request<any, any, { files: [string, string][] }>, res) => {
-    console.log(req.body.files);
-
-    req.body.files.forEach(([filename, contents]) => {
-      writeFileSync(filename, contents);
-    });
-
-    res.send(`No. files written: ${req.body.files.length}`);
-  });
-
-  app.get("/read-file-sync", (req: Request<any, any, any, { filename: string }>, res) => {
-    try {
-      console.log(req.query.filename);
-      const contents = readFileSync(req.query.filename);
-      console.log(contents);
-    } catch (error) {
-      console.error(error);
-    }
-
-    res.send();
   });
 
   app.listen();

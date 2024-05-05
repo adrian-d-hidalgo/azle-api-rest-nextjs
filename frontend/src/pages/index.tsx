@@ -59,16 +59,18 @@ export default function IcConnectPage(): JSX.Element {
               <ContactForm />
             </div>
 
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-xl font-bold mb-2">Images</h2>
-              <UploadImage />
-            </div>
+            <div className="bg-white rounded-lg shadow-md p-6">{/* More connections */}</div>
           </div>
         </div>
       </main>
     </>
   );
 }
+
+type CreateContactsResponse = {
+  name: string;
+  email: string;
+};
 
 function ContactForm(): JSX.Element {
   const backend = useRestActor("backend");
@@ -83,14 +85,14 @@ function ContactForm(): JSX.Element {
     setEmail(e.target.value);
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Handle form submission logic here
     console.log("Name:", name);
     console.log("Email:", email);
 
     try {
-      backend.post(
+      const response = await backend.post<CreateContactsResponse>(
         "/contacts",
         { name, email },
         {
@@ -99,6 +101,8 @@ function ContactForm(): JSX.Element {
           },
         }
       );
+
+      console.log(response.data.email, response.data.name);
     } catch (error) {
       console.error({ error });
     }
@@ -138,50 +142,3 @@ function ContactForm(): JSX.Element {
     </form>
   );
 }
-
-const UploadImage = () => {
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-
-  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files.length > 0) {
-      const file = event.target.files[0];
-      setSelectedFile(file);
-    }
-  };
-
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    if (selectedFile) {
-      try {
-        // Some logic to send the image to the backend
-      } catch (error) {
-        console.error("Error sending image:", error);
-      }
-    } else {
-      console.log("No image selected.");
-    }
-  };
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <div className="mb-4">
-        <label htmlFor="image" className="block text-gray-700 font-bold mb-2">
-          Select Image:
-        </label>
-        <input
-          type="file"
-          id="image"
-          accept="image/*"
-          onChange={handleFileChange}
-          className="w-full border border-gray-300 rounded-md py-2 px-3 text-gray-700 focus:outline-none focus:border-blue-500"
-        />
-      </div>
-      <button
-        type="submit"
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-        Upload
-      </button>
-    </form>
-  );
-};
