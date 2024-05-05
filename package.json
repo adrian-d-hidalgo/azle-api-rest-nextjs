@@ -1,11 +1,12 @@
 {
   "name": "azle-api-rest-nextjs",
+  "version": "0.1.0",
   "workspaces": [
     "backend",
     "frontend"
   ],
   "keywords": [
-    "api rest",
+    "rest api",
     "azle",
     "express",
     "icp",
@@ -13,7 +14,8 @@
     "nextjs",
     "react",
     "rest",
-    "typescript"
+    "typescript",
+    "sqlite"
   ],
   "scripts": {
     "build": "turbo run build",
