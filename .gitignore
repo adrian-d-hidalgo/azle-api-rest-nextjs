@@ -5,7 +5,8 @@ node_modules
 .turbo
 
 # VSC
-.vscode
+.vscode/*
+!.vscode/settings.json
 
 # DFX
 .dfx
