@@ -25,14 +25,12 @@ let db: Database | undefined;
 
 export default Server(
   async () => {
-    console.log("Server method called");
     db = new Database(databaseOptions);
     await db.load();
     return CreateServer({ database: db });
   },
   {
     init: init([], async () => {
-      console.log("Init method called");
       try {
         db = new Database(databaseOptions);
         await db.init();
@@ -44,7 +42,6 @@ export default Server(
     }),
     // TODO: This method is not called
     preUpgrade: preUpgrade(() => {
-      console.log("PreUpgrade method called");
       try {
         if (!db) {
           throw new Error("Database not initialized");
@@ -56,7 +53,6 @@ export default Server(
       }
     }),
     postUpgrade: postUpgrade([], async () => {
-      console.log("PostUpgrade method called");
       try {
         db = new Database(databaseOptions);
         await db.load();

@@ -40,6 +40,24 @@ export function CreateServer({ database }: CreateServerOptions) {
     res.json(users);
   });
 
+  app.get("/users/:id", async (req, res) => {
+    try {
+      const dataSource = await database.getDataSource();
+      const userRepository = dataSource.getRepository(UserEntity);
+      const user = await userRepository.findOneBy({ id: req.body.id });
+
+      if (!user) {
+        res.status(404);
+        res.send("User not found.");
+      } else {
+        res.json(user);
+      }
+    } catch (error: any) {
+      res.status(400);
+      res.send(error.message);
+    }
+  });
+
   app.post("/users", async (req: Request, res) => {
     try {
       const dataSource = await database.getDataSource();
