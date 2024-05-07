@@ -40,7 +40,6 @@ export default Server(
         throw error;
       }
     }),
-    // TODO: This method is not called
     preUpgrade: preUpgrade(() => {
       try {
         if (!db) {

@@ -2,7 +2,7 @@
 
 This boilerplate is designed to easily build 100% descentralized fullstack web applications on ICP.
 
-## Features
+## Features
 
 - Build REST API on chain
 - Persist SQL database on chain
@@ -11,11 +11,11 @@ This boilerplate is designed to easily build 100% descentralized fullstack web a
 
 ## Stack
 
-- Azle - Backend server to serve ExpressJS apps on chain
-- TypeORM - ORM currently working with sql.js
-- Ares - Frontend ICP Connector
-- NextJS - Frontend Framework
-- Tailwind - CSS Framework
+- [Azle](https://demergent-labs.github.io/azle/) - Backend server to serve ExpressJS apps on chain
+- [TypeORM](https://typeorm.io/) - ORM currently working with sql.js
+- [Ares](https://github.com/bundlydev/ares/) - Frontend and Backend ICP Connector
+- [NextJS](https://nextjs.org/) - Frontend Framework
+- [Tailwind](https://tailwindcss.com/) - CSS Framework
 
 ## Run Locally
 
@@ -106,3 +106,4 @@ Run the following script:
 
 - TypeORM migrations not working
 - TypeORM logger not working
+- Images can't be uploaded (Azle and Ares issue)
