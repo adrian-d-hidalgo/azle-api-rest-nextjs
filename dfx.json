@@ -6,7 +6,7 @@
       "type": "custom",
       "main": "backend/index.ts",
       "candid": "backend/index.did",
-      "candid_gen": "http",
+      "candid_gen": "automatic",
       "build": "npx azle backend",
       "wasm": ".azle/backend/backend.wasm",
       "gzip": true,
