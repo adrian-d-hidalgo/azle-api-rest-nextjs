@@ -9,6 +9,7 @@
   "arrowParens": "always",
   "tabWidth": 2,
   "endOfLine": "auto",
+  "importOrderParserPlugins": ["typescript", "decorators-legacy"],
   "importOrder": ["<THIRD_PARTY_MODULES>", "^@bundly/*", "^[./]"],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,

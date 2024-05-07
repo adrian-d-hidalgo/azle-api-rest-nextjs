@@ -1,21 +1,25 @@
 {
   "name": "azle-api-rest-nextjs",
-  "version": "0.1.0",
+  "version": "0.2.0",
+  "license": "MIT",
+  "author": "Adrián Darío Hidalgo Flores",
   "workspaces": [
     "backend",
     "frontend"
   ],
   "keywords": [
-    "rest api",
     "azle",
+    "dapps",
     "express",
     "icp",
     "internet computer",
     "nextjs",
     "react",
     "rest",
-    "typescript",
-    "sqlite"
+    "rest api",
+    "sqlite",
+    "typeorm",
+    "typescript"
   ],
   "scripts": {
     "build": "turbo run build",
