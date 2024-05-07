@@ -1,6 +1,21 @@
 # Fullstack dApp (Azle + Express + NextJS + ICP)
 
-This template is designed to easily build applications deployed on ICP using Azle + Express for RESTful APIs and Next.js for frontend development.
+This boilerplate is designed to easily build 100% descentralized fullstack web applications on ICP.
+
+## Features
+
+- Build REST API on chain
+- Persist SQL database on chain
+- Deploy NextJS apps on chain
+- Connect frontend to backend using ICP Identities
+
+## Stack
+
+- Azle - Backend server to serve ExpressJS apps on chain
+- TypeORM - ORM currently working with sql.js
+- Ares - Frontend ICP Connector
+- NextJS - Frontend Framework
+- Tailwind - CSS Framework
 
 ## Run Locally
 
@@ -50,9 +65,9 @@ Your .env file should look something like this:
 
 ```bash
 # Replace BACKEND_CANISTER_ID with your backend canister id
-NEXT_PUBLIC_API_REST_URL=http://BACKEND_CANISTER_ID.localshot:4943
+NEXT_PUBLIC_API_REST_URL=http://BACKEND_CANISTER_ID.localhost:4943
 # Replace INTERNET_IDENTITY_CANISTER_ID with your internet-identity canister id
-NEXT_PUBLIC_INTERNET_IDENTITY_URL=http://INTERNET_IDENTITY_CANISTER_ID.localshot:4943
+NEXT_PUBLIC_INTERNET_IDENTITY_URL=http://INTERNET_IDENTITY_CANISTER_ID.localhost:4943
 ```
 
 Deploy your canisters:
@@ -86,3 +101,8 @@ Then, navitate to `frontend` folder:
 Run the following script:
 
 `npm run dev`
+
+## Known Issues
+
+- TypeORM migrations not working
+- TypeORM logger not working
