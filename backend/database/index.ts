@@ -9,6 +9,7 @@ export type DatabaseOptions = {
   entities?: MixedList<string | Function | EntitySchema<any>>;
   sincronize?: boolean;
   migrationsRun?: boolean;
+  logging?: boolean;
   logger?: "advanced-console" | "simple-console" | "file" | "debug" | Logger | undefined;
 };
 
@@ -31,9 +32,10 @@ export class Database {
       driver: await initSqlJs({}),
       database: bytes,
       synchronize: this.options.sincronize,
-      migrationsRun: this.options.migrationsRun,
       entities: this.options.entities,
       migrations: this.options.migrations,
+      migrationsRun: this.options.migrationsRun,
+      logging: this.options.logging,
       logger: this.options.logger,
     });
 

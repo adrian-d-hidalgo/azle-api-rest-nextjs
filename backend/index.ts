@@ -15,10 +15,10 @@ const databaseOptions: DatabaseOptions = {
     index: 0,
   }),
   entities: ENTITIES,
-  // TODO: Test this
-  migrations: ["/migrations/*.ts"],
-  // TODO: logger not working when ConsoleLogger(true)
-  logger: new ConsoleLogger(),
+  // TODO: Migrations are not found
+  migrations: ["/migrations/*.{ts,js}"],
+  // TODO: logger not working,
+  logger: new ConsoleLogger(false),
 };
 
 let db: Database | undefined;
