@@ -10,6 +10,7 @@
       "build": "npx azle backend",
       "wasm": ".azle/backend/backend.wasm",
       "gzip": true,
+      "assets": [["backend/database/migrations", "migrations"]],
       "metadata": [
         {
           "name": "candid:service",

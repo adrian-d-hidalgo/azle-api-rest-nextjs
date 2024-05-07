@@ -3,19 +3,17 @@ import cors from "cors";
 import express, { NextFunction, Request, Response } from "express";
 
 import { Database } from "./database";
+import { UserEntity } from "./database/entities/user";
 
-export async function CreateServer() {
-  const database = new Database();
-  await database.init();
+export type CreateServerOptions = {
+  database: Database;
+};
 
+export function CreateServer({ database }: CreateServerOptions) {
   const app = express();
 
   app.use(cors());
   app.use(express.json());
-  app.use(async (req, res, next) => {
-    req.database = database;
-    next();
-  });
 
   app.use(function (err: Error, req: Request, res: Response, next: NextFunction) {
     console.error(err.message);
@@ -35,48 +33,24 @@ export async function CreateServer() {
     res.send().statusCode = 204;
   });
 
-  app.post("/contacts", AuthGuard, (req, res) => {
-    const { name, email } = req.body;
-
-    const result = req.database.exec(`
-      INSERT INTO contacts (name, email) VALUES ('${name}', '${email}')
-    `);
-
-    res.json({
-      name,
-      email,
-    });
+  app.get("/users", async (req, res) => {
+    const dataSource = await database.getDataSource();
+    const userRepository = dataSource.getRepository(UserEntity);
+    const users = await userRepository.find();
+    res.json(users);
   });
 
-  app.get("/contacts", (req, res) => {
+  app.post("/users", async (req: Request, res) => {
     try {
-      const result = req.database.exec(`SELECT * FROM contacts`);
-      res.json(result);
-    } catch (error) {
-      console.error(error);
-      res.status(500).send("An error occurred while fetching contacts.");
+      const dataSource = await database.getDataSource();
+      const userRepository = dataSource.getRepository(UserEntity);
+      const user = await userRepository.save(req.body);
+      res.json(user);
+    } catch (error: any) {
+      res.status(400);
+      res.send(error.message);
     }
-  });
-
-  // Database
-  app.get("/database/migrations", AuthGuard, (req, res) => {
-    const result = req.database.exec(`SELECT * FROM migrations`);
-    res.json(result);
-  });
-
-  app.get("/database/tables", AuthGuard, (req, res) => {
-    const result = req.database.exec(`SELECT name FROM sqlite_master WHERE type='table'`);
-    res.json(result);
-  });
-
-  app.get("/whoami", (req, res) => {
-    res.json({
-      caller: ic.caller(),
-      principal: ic.caller().toString(),
-    });
   });
 
   return app.listen();
 }
-
-// CreateServer();
