@@ -1,6 +1,6 @@
 {
   "name": "azle-api-rest-nextjs",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "license": "MIT",
   "author": "Adrián Darío Hidalgo Flores",
   "workspaces": [
@@ -27,8 +27,8 @@
     "clean": "rm -rf .azle && rm -rf .dfx && rm -rf .turbo && rm -rf node_modules"
   },
   "devDependencies": {
-    "@trivago/prettier-plugin-sort-imports": "4.3.0",
-    "prettier": "^3.1.1",
-    "turbo": "^1.11.2"
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "prettier": "^3.2.5",
+    "turbo": "^1.13.3"
   }
 }
