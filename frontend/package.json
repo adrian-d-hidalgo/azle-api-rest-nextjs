@@ -9,16 +9,16 @@
     "clean": "rm -rf .next && rm -rf .turbo && rm -rf build && rm -rf node_modules"
   },
   "dependencies": {
-    "@bundly/ares-core": "^0.1.1-beta.0",
-    "@bundly/ares-react": "^0.1.1-beta.0",
+    "@bundly/ares-core": "^0.2.0-beta.10",
+    "@bundly/ares-react": "^0.2.0-beta.9",
     "@dfinity/agent": "^1.3.0",
     "next": "14.2.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@types/node": "^20.12.8",
-    "@types/react": "^18.3.1",
+    "@types/node": "^20.12.11",
+    "@types/react": "^18.3.2",
     "@types/react-dom": "^18.3.0",
     "autoprefixer": "^10.4.19",
     "eslint": "^8.57.0",

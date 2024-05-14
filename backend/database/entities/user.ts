@@ -7,6 +7,12 @@ export class UserEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: "text", unique: true })
+  @Column({ type: "text", nullable: false, unique: true, readonly: true })
+  principal: string;
+
+  @Column({ type: "text", nullable: false, unique: true })
   username: string;
+
+  @Column({ type: "text", nullable: false, unique: true })
+  bio: string;
 }
